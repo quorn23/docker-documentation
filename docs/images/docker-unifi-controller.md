@@ -43,11 +43,15 @@ This image provides various versions that are available via tags. Please read th
 | mongoless | ✅ | Stable Unifi Controller releases without mongodb included. |
 ## Application Setup
 
+### From 2024-01-01 this image will be deprecated and it will no longer be updated. Please migrate to our [Unifi Network Application](https://github.com/linuxserver/docker-unifi-network-application) image instead
+
+See: [https://info.linuxserver.io/issues/2023-09-06-unifi-controller](https://info.linuxserver.io/issues/2023-09-06-unifi-controller) for more information.
+
 The webui is at https://ip:8443, setup with the first run wizard.
 
-### Please note, Unifi change the location of this option every few releases so if it's not where it says, search for "Inform" or "Inform Host" in the settings.
-
 For Unifi to adopt other devices, e.g. an Access Point, it is required to change the inform IP address. Because Unifi runs inside Docker by default it uses an IP address not accessible by other devices. To change this go to Settings > System > Advanced and set the Inform Host to a hostname or IP address accessible by your devices. Additionally the checkbox "Override" has to be checked, so that devices can connect to the controller during adoption (devices use the inform-endpoint during adoption).
+
+**Please note, Unifi change the location of this option every few releases so if it's not where it says, search for "Inform" or "Inform Host" in the settings.**
 
 In order to manually adopt a device take these steps:
 
@@ -212,6 +216,8 @@ We publish various [Docker Mods](https://github.com/linuxserver/docker-mods) to 
 
 ## Versions
 
+* **05.09.23:** - Add deprecation warning as per [https://info.linuxserver.io/issues/2023-09-06-unifi-controller](https://info.linuxserver.io/issues/2023-09-06-unifi-controller).
+* **04.09.23:** - Bump JRE to 17 to support v7.5.
 * **02.05.23:** - Cleanup `apt-get install` during build to reduce image size.
 * **18.03.23:** - Add mongoless branch.
 * **10.03.23:** - Test writing to /run/unifi and symlink to /config/run if it fails.
