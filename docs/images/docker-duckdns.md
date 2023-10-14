@@ -37,7 +37,7 @@ The architectures supported by this image are:
 ## Application Setup
 
 - Go to the [duckdns website](https://duckdns.org/), register your subdomain(s) and retrieve your token
-- Create a container with your subdomain(s) and token
+- Create a container with your subdomain(s) and token. If you own user.duckdns.org, you put `SUBDOMAINS=user` you would NOT put a sub subdomain like overseerr from overseerr.user.ducksdns.org
 - It will update your IP with the DuckDNS service every 5 minutes (with a random jitter)
 
 ## Usage
@@ -97,7 +97,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `SUBDOMAINS=subdomain1,subdomain2` | multiple subdomains allowed, comma separated, no spaces |
+| `SUBDOMAINS=subdomain1,subdomain2` | multiple subdomains allowed, comma separated, no spaces, if your domain is user.duckdns.org you put user, not a sub-subdomain |
 | `TOKEN=token` | DuckDNS token |
 | `LOG_FILE=false` | Set to `true` to log to file (also need to map /config). |
 
@@ -294,6 +294,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **14.10.23:** - Rework shell script for case insensitivity and update readme to be more clear.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **02.03.23:** - Rework shell scripts and cron logic.
 * **13.02.23:** - Rebase to alpine 3.17.
