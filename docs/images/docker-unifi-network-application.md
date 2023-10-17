@@ -127,6 +127,8 @@ services:
       - MONGO_DBNAME=unifi
       - MEM_LIMIT=1024 #optional
       - MEM_STARTUP=1024 #optional
+      - MONGO_TLS= #optional
+      - MONGO_AUTHSOURCE= #optional
     volumes:
       - /path/to/data:/config
     ports:
@@ -157,6 +159,8 @@ docker run -d \
   -e MONGO_DBNAME=unifi \
   -e MEM_LIMIT=1024 `#optional` \
   -e MEM_STARTUP=1024 `#optional` \
+  -e MONGO_TLS= `#optional` \
+  -e MONGO_AUTHSOURCE= `#optional` \
   -p 8443:8443 \
   -p 3478:3478/udp \
   -p 10001:10001/udp \
@@ -203,6 +207,8 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `MONGO_DBNAME=unifi` | Mongodb Database Name (stats DB is automatically suffixed with `_stat`). Only evaluated on first run. |
 | `MEM_LIMIT=1024` | Optionally change the Java memory limit (in Megabytes). Set to `default` to reset to default |
 | `MEM_STARTUP=1024` | Optionally change the Java initial/minimum memory (in Megabytes). Set to `default` to reset to default |
+| `MONGO_TLS=` | Mongodb enable TLS. Only evaluated on first run. |
+| `MONGO_AUTHSOURCE=` | Mongodb authSource. For Atlas set to `admin`.Defaults to `MONGO_DBNAME`.Only evaluated on first run. |
 
 ### Volume Mappings (`-v`)
 
@@ -395,4 +401,5 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **17.10.23:** - Add environment variables for TLS and authSource to support Atlas and new MongoDB versions.
 * **05.09.23:** - Initial release.
