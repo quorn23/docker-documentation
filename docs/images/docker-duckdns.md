@@ -40,6 +40,13 @@ The architectures supported by this image are:
 - Create a container with your subdomain(s) and token. If you own user.duckdns.org, you put `SUBDOMAINS=user` you would NOT put a sub subdomain like overseerr from overseerr.user.ducksdns.org
 - It will update your IP with the DuckDNS service every 5 minutes (with a random jitter)
 
+## Notice regarding automatic detection
+
+Using the `UPDATE_IP` variable whatever its value (`ipv4`, `ipv6` or `both`) uses external *Cloudflare whoami* service to detect public IP addresses.
+**Be aware that using this variable will query a third-party service other than DuckDNS.**
+
+Omitting the `UPDATE_IP` variable uses DuckDNS for detection and only supports IPv4.
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -53,12 +60,14 @@ services:
   duckdns:
     image: lscr.io/linuxserver/duckdns:latest
     container_name: duckdns
+    network_mode: host #optional
     environment:
       - PUID=1000 #optional
       - PGID=1000 #optional
       - TZ=Etc/UTC #optional
       - SUBDOMAINS=subdomain1,subdomain2
       - TOKEN=token
+      - UPDATE_IP=ipv4 #optional
       - LOG_FILE=false #optional
     volumes:
       - /path/to/appdata/config:/config #optional
@@ -70,11 +79,13 @@ services:
 ```bash
 docker run -d \
   --name=duckdns \
+  --net=host `#optional` \
   -e PUID=1000 `#optional` \
   -e PGID=1000 `#optional` \
   -e TZ=Etc/UTC `#optional` \
   -e SUBDOMAINS=subdomain1,subdomain2 \
   -e TOKEN=token \
+  -e UPDATE_IP=ipv4 `#optional` \
   -e LOG_FILE=false `#optional` \
   -v /path/to/appdata/config:/config `#optional` \
   --restart unless-stopped \
@@ -90,6 +101,12 @@ Containers are configured using parameters passed at runtime (such as those abov
 | Parameter | Function |
 | :----: | --- |
 
+#### Networking (`--net`)
+
+| Parameter | Function |
+| :-----:   | --- |
+| `--net=host` | Use host networking for IPv6 detection |
+
 ### Environment Variables (`-e`)
 
 | Env | Function |
@@ -99,6 +116,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `SUBDOMAINS=subdomain1,subdomain2` | multiple subdomains allowed, comma separated, no spaces, if your domain is user.duckdns.org you put user, not a sub-subdomain |
 | `TOKEN=token` | DuckDNS token |
+| `UPDATE_IP=ipv4` | Set to `ipv6` or `ipv4` to update  **only** your public IPv4/6 address. Set to `both` to update IPv6 and IPv4 address. This variable makes use of a [third-party service](#notice-regarding-automatic-detection). Omitting this variable uses DuckDNS for detection and only supports IPv4. `both` and `ipv6` modes needs [host networking](#networking-net). |
 | `LOG_FILE=false` | Set to `true` to log to file (also need to map /config). |
 
 ### Volume Mappings (`-v`)
@@ -295,6 +313,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 ## Versions
 
 * **14.10.23:** - Rework shell script for case insensitivity and update readme to be more clear.
+* **13.10.23:** - Add support for public IPv6 address update using Cloudflare.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **02.03.23:** - Rework shell scripts and cron logic.
 * **13.02.23:** - Rebase to alpine 3.17.
