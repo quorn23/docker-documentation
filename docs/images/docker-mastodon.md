@@ -215,9 +215,9 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `DB_PORT=5432` | Portgres port |
 | `ES_ENABLED=false` | Enable or disable Elasticsearch (requires a separate ES instance) |
 | `SECRET_KEY_BASE=` | Browser session secret. Changing it will break all active browser sessions. |
-| `OTP_SECRET=` | MFA secret. Changing it will break two-factor authentication. |
-| `VAPID_PRIVATE_KEY=` | Push notification private key. Changing it will break push notifications. |
-| `VAPID_PUBLIC_KEY=` | Push notification public key. Changing it will break push notifications. |
+| `OTP_SECRET=` | MFA secret. Changing it after initial setup will break two-factor authentication. |
+| `VAPID_PRIVATE_KEY=` | Push notification private key. Changing it after initial setup will break push notifications. |
+| `VAPID_PUBLIC_KEY=` | Push notification public key. Changing it after initial setup will break push notifications. |
 | `SMTP_SERVER=mail.example.com` | SMTP server for email notifications |
 | `SMTP_PORT=25` | SMTP server port |
 | `SMTP_LOGIN=` | SMTP username |
