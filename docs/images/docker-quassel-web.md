@@ -64,13 +64,15 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - QUASSEL_CORE=192.168.1.10
-      - QUASSEL_PORT=4242
+      - QUASSEL_CORE=192.168.1.10 #optional
+      - QUASSEL_PORT=4242 #optional
+      - QUASSEL_HTTPS= #optional
       - URL_BASE=/quassel #optional
     volumes:
       - /path/to/data:/config
     ports:
-      - 64443:64443
+      - 64080:64080 #optional
+      - 64443:64443 #optional
     restart: unless-stopped
 ```
 
@@ -82,10 +84,12 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -e QUASSEL_CORE=192.168.1.10 \
-  -e QUASSEL_PORT=4242 \
+  -e QUASSEL_CORE=192.168.1.10 `#optional` \
+  -e QUASSEL_PORT=4242 `#optional` \
+  -e QUASSEL_HTTPS= `#optional` \
   -e URL_BASE=/quassel `#optional` \
-  -p 64443:64443 \
+  -p 64080:64080 `#optional` \
+  -p 64443:64443 `#optional` \
   -v /path/to/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/quassel-web:latest
@@ -99,6 +103,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :----: | --- |
+| `64080` | Quassel-web http webui |
 | `64443` | Quassel-web https webui |
 
 ### Environment Variables (`-e`)
@@ -110,6 +115,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `QUASSEL_CORE=192.168.1.10` | specify the URL or IP address of your Quassel Core instance |
 | `QUASSEL_PORT=4242` | specify the port of your Quassel Core instance |
+| `QUASSEL_HTTPS=` | Set to `true` to have Quassel web serve over https on port 64443 instead of http on port 64080. |
 | `URL_BASE=/quassel` | Specify a url-base in reverse proxy setups ie. `/quassel` |
 
 ### Volume Mappings (`-v`)
