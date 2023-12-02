@@ -36,7 +36,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-For use with Home Assistant, add the Wyoming integration and support the hostname/IP and port that Whisper is running add-on."
+For use with Home Assistant [Assist](https://www.home-assistant.io/voice_control/voice_remote_local_assistant/), add the Wyoming integration and supply the hostname/IP and port that Whisper is running add-on."
 
 For more information see the [faster-whisper docs](https://github.com/SYSTRAN/faster-whisper),
 
@@ -101,7 +101,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `WHISPER_MODEL=tiny-int8` | Whisper model that will be used for transcription. |
+| `WHISPER_MODEL=tiny-int8` | Whisper model that will be used for transcription. From `tiny`, `base`, `small` and `medium`, all with `-int8` compressed variants |
 | `WHISPER_BEAM=1` | Number of candidates to consider simultaneously during transcription. |
 | `WHISPER_LANG=en` | Language that you will speak to the add-on. |
 
