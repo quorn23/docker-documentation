@@ -72,6 +72,7 @@ services:
       - 8112:8112
       - 6881:6881
       - 6881:6881/udp
+      - 58846:58846 #optional
     restart: unless-stopped
 ```
 
@@ -87,6 +88,7 @@ docker run -d \
   -p 8112:8112 \
   -p 6881:6881 \
   -p 6881:6881/udp \
+  -p 58846:58846 `#optional` \
   -v /path/to/deluge/config:/config \
   -v /path/to/your/downloads:/downloads \
   --restart unless-stopped \
@@ -104,6 +106,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `8112` | Port for webui |
 | `6881` | Inbound torrent traffic (See App Setup) |
 | `6881/udp` | Inbound torrent traffic (See App Setup) |
+| `58846` | Default deluged port for thin client connectivity |
 
 ### Environment Variables (`-e`)
 
@@ -306,6 +309,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **07.12.23:** - Add optional port 58846 to readme for thin client connectivity.
 * **07.10.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **10.08.23:** - Bump unrar to 6.2.10.
 * **30.06.23:** - Bump unrar to 6.2.8, deprecate armhf as per [https://www.linuxserver.io/armhf](https://www.linuxserver.io/armhf).
