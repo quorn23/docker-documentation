@@ -104,7 +104,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Configure the `Targets` file here |
+| `/config` | Persistent config files |
 | `/data` | Storage location for db and application data (graphs etc) |
 
 #### Miscellaneous Options
@@ -292,6 +292,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **29.11.23:** - Bump tcpping to 1.8.
 * **21.11.23:** - Add support for IRTT Probes.
 * **23.07.23:** - Add Authen::TacacsPlus for Tacacs+ support.
