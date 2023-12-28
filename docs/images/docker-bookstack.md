@@ -129,7 +129,7 @@ docker run -d \
   -e DB_DATABASE=bookstackapp \
   -e QUEUE_CONNECTION= `#optional` \
   -p 6875:80 \
-  -v /path/to/data:/config \
+  -v /path/to/bookstack/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/bookstack:latest
 ```
@@ -163,7 +163,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | this will store any uploaded data on the docker host |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -350,6 +350,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **31.10.23:** - Further sanitize sed replace.
 * **07.06.23:** - Add mariadb-client for bookstack-system-cli support.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
