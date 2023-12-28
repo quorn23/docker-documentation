@@ -66,7 +66,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <path to data>:/config
+      - /path/to/tautulli/config:/config
     ports:
       - 8181:8181
     restart: unless-stopped
@@ -81,7 +81,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8181:8181 \
-  -v <path to data>:/config \
+  -v /path/to/tautulli/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/tautulli:latest
 ```
@@ -108,7 +108,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains tautulli config and database. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -295,6 +295,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **26.08.23:** - Rebase to Alpine 3.18.
 * **22.06.23:** - Revert master branch to Alpine 3.17 due to issues with Python 3.11.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
