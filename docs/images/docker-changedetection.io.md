@@ -77,7 +77,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e BASE_URL= `#optional` \
   -p 5000:5000 \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/changedetection.io/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/changedetection.io:latest
 ```
@@ -105,7 +105,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains all relevant configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -292,6 +292,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **10.08.23:** - Add poppler-utils for pdf conversion tools.
 * **11.06.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **05.03.23:** - Rebase to Alpine 3.17.
