@@ -78,7 +78,7 @@ services:
       - SECRET_KEY= #optional
       - SITE_LOGO_URL= #optional
     volumes:
-      - /path/to/data:/config
+      - /path/to/healthchecks/config:/config
     ports:
       - 8000:8000
       - 2525:2525 #optional
@@ -113,7 +113,7 @@ docker run -d \
   -e SITE_LOGO_URL= `#optional` \
   -p 8000:8000 \
   -p 2525:2525 `#optional` \
-  -v /path/to/data:/config \
+  -v /path/to/healthchecks/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/healthchecks:latest
 ```
@@ -159,7 +159,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Database and healthchecks config directory |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -346,6 +346,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **31.05.23:** - Rebase to Alpine 3.18. Deprecate armhf.
 * **22.12.22:** - Rebase to Alpine 3.17. Add extra deps for pycurl. Add INTEGRATIONS_ALLOW_PRIVATE_IPS.
 * **18.10.22:** - Add curl-dev to fix broken pip builds.
