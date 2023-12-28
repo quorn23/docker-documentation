@@ -77,7 +77,7 @@ services:
       - PMM_TEST=False #optional
       - PMM_NO_MISSING=False #optional
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/plex-meta-manager/config:/config
     restart: unless-stopped
 ```
 
@@ -94,7 +94,7 @@ docker run -d \
   -e PMM_RUN=False `#optional` \
   -e PMM_TEST=False `#optional` \
   -e PMM_NO_MISSING=False `#optional` \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/plex-meta-manager/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/plex-meta-manager:latest
 ```
@@ -125,7 +125,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Local path for plex-meta-manager config files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -312,6 +312,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **10.06.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **05.03.23:** - Add nightly branch.
 * **11.12.22:** - Rebase master to Alpine 3.17.
