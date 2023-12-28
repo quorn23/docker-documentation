@@ -62,7 +62,7 @@ services:
       - PMA_ARBITRARY=1 #optional
       - PMA_ABSOLUTE_URI=https://phpmyadmin.example.com #optional
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/phpmyadmin/config:/config
     ports:
       - 80:80
     restart: unless-stopped
@@ -79,7 +79,7 @@ docker run -d \
   -e PMA_ARBITRARY=1 `#optional` \
   -e PMA_ABSOLUTE_URI=https://phpmyadmin.example.com `#optional` \
   -p 80:80 \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/phpmyadmin/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/phpmyadmin:latest
 ```
@@ -108,7 +108,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains all relevant configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -295,6 +295,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **28.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **25.12.23:** - Existing users should update: site-confs/default.conf - Cleanup default site conf.
 * **06.09.23:** - Add support for custom themes.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
