@@ -56,7 +56,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/htpcmanager/config:/config
     ports:
       - 8085:8085
     restart: unless-stopped
@@ -71,7 +71,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8085:8085 \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/htpcmanager/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/htpcmanager:latest
 ```
@@ -98,7 +98,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -285,6 +285,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **08.01.24:** - Rebase to Alpine 3.19.
 * **25.08.23:** - Rebase to Alpine 3.18.
 * **04.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
