@@ -83,7 +83,7 @@ services:
       - DB_DATABASE=
       - APP_NAME=Lychee #optional
       - APP_URL= #optional
-      - APP_FORCE_HTTPS= #optional
+      - TRUSTED_PROXIES= #optional
     volumes:
       - /path/to/lychee/config:/config
       - /path/to/pictures:/pictures
@@ -108,7 +108,7 @@ docker run -d \
   -e DB_DATABASE= \
   -e APP_NAME=Lychee `#optional` \
   -e APP_URL= `#optional` \
-  -e APP_FORCE_HTTPS= `#optional` \
+  -e TRUSTED_PROXIES= `#optional` \
   -p 80:80 \
   -v /path/to/lychee/config:/config \
   -v /path/to/pictures:/pictures \
@@ -141,7 +141,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `DB_DATABASE=` | Path to DB file for `sqlite`. DB name for `mysql` and `pgsql`. |
 | `APP_NAME=Lychee` | The gallery name. |
 | `APP_URL=` | The URL you will use to access Lychee including protocol, and port where appropriate. |
-| `APP_FORCE_HTTPS=` | Set to `true` if running behind an https reverse proxy. |
+| `TRUSTED_PROXIES=` | Set to the IP or netmask covering your reverse proxy, if running behind one. Set to `*` to trust all IPs (**do not** use `*` if exposed to the internet`). |
 
 ### Volume Mappings (`-v`)
 
