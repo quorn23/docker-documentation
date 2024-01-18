@@ -55,7 +55,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - <path to config>:/config
+      - /path/to/snapdrop/config:/config
     ports:
       - 80:80
       - 443:443
@@ -72,7 +72,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -p 80:80 \
   -p 443:443 \
-  -v <path to config>:/config \
+  -v /path/to/snapdrop/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/snapdrop:latest
 ```
@@ -100,7 +100,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Persistent configs and logs. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -270,6 +270,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **13.04.23:** - Move ssl.conf include to default.conf.
 * **20.01.23:** - Rebase to alpine 3.17 with php8.1.
