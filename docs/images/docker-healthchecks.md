@@ -38,10 +38,6 @@ The architectures supported by this image are:
 
 Access the WebUI at <your-ip>:8000. For more information, check out [Healthchecks](https://github.com/healthchecks/healthchecks).
 
-## Note on `CSRF_TRUSTED_ORIGINS`
-
-On first run (or any startup where `REGENERATE_SETTINGS=true`) we will set `CSRF_TRUSTED_ORIGINS` to match the value of `SITE_ROOT`. If you need different/additional origins, you will need to edit `/config/local_settings.py` and add them yourself. Note that setting `REGENERATE_SETTINGS=true` will overwrite any changes on startup.
-
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -70,6 +66,7 @@ services:
       - SUPERUSER_PASSWORD=
       - REGENERATE_SETTINGS= #optional
       - ALLOWED_HOSTS= #optional
+      - CSRF_TRUSTED_ORIGINS= #optional
       - APPRISE_ENABLED= #optional
       - DEBUG= #optional
       - INTEGRATIONS_ALLOW_PRIVATE_IPS= #optional
@@ -104,6 +101,7 @@ docker run -d \
   -e SUPERUSER_PASSWORD= \
   -e REGENERATE_SETTINGS= `#optional` \
   -e ALLOWED_HOSTS= `#optional` \
+  -e CSRF_TRUSTED_ORIGINS= `#optional` \
   -e APPRISE_ENABLED= `#optional` \
   -e DEBUG= `#optional` \
   -e INTEGRATIONS_ALLOW_PRIVATE_IPS= `#optional` \
@@ -146,7 +144,8 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `SUPERUSER_EMAIL=` | Superuser email |
 | `SUPERUSER_PASSWORD=` | Superuser password |
 | `REGENERATE_SETTINGS=` | Defaults to False. Set to True to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
-| `ALLOWED_HOSTS=` | Array of valid hostnames for the server `["test.com","test2.com"]` (default: `["*"]`) |
+| `ALLOWED_HOSTS=` | A [list](https://docs.python.org/3/tutorial/introduction.html#lists) of valid hostnames for the server. Default is: `["*"]` |
+| `CSRF_TRUSTED_ORIGINS=` | A [list](https://docs.python.org/3/tutorial/introduction.html#lists) of trusted origins for unsafe requests (e.g. POST). Defaults to the value of `SITE_ROOT`. |
 | `APPRISE_ENABLED=` | Defaults to False. A boolean that turns on/off the Apprise integration (https://github.com/caronc/apprise) |
 | `DEBUG=` | Defaults to True. Debug mode relaxes CSRF protections and increases logging verbosity but should be disabled for production instances as it will impact performance and security. |
 | `INTEGRATIONS_ALLOW_PRIVATE_IPS=` | Defaults to False. Set to True to allow integrations to connect to private IP addresses. |
@@ -328,6 +327,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **22.01.24:** - Fix CSRF handling.
 * **23.12.23:** - Rebase to Alpine 3.19.
 * **31.05.23:** - Rebase to Alpine 3.18. Deprecate armhf.
 * **22.12.22:** - Rebase to Alpine 3.17. Add extra deps for pycurl. Add INTEGRATIONS_ALLOW_PRIVATE_IPS.
