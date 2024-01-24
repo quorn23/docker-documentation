@@ -77,7 +77,7 @@ services:
       - REMOTE_AUTH_DEFAULT_GROUPS= #optional
       - REMOTE_AUTH_DEFAULT_PERMISSIONS= #optional
     volumes:
-      - /path/to/data:/config
+      - /path/to/netbox/config:/config
     ports:
       - 8000:8000
     restart: unless-stopped
@@ -112,7 +112,7 @@ docker run -d \
   -e REMOTE_AUTH_DEFAULT_GROUPS= `#optional` \
   -e REMOTE_AUTH_DEFAULT_PERMISSIONS= `#optional` \
   -p 8000:8000 \
-  -v /path/to/data:/config \
+  -v /path/to/netbox/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/netbox:latest
 ```
@@ -159,7 +159,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | config directory volume mapping |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -329,6 +329,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **11.06.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **14.05.23:** - Build local docs on first run.
 * **05.03.23:** - Rebase to Alpine 3.17.
