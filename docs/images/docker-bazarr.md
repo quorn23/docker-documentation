@@ -111,7 +111,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Bazarr data |
+| `/config` | Persistent config files |
 | `/movies` | Location of your movies |
 | `/tv` | Location of your TV Shows |
 
@@ -283,6 +283,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **19.09.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **11.08.23:** - Rebase to Alpine 3.18.
 * **10.08.23:** - Bump unrar to 6.2.10.
