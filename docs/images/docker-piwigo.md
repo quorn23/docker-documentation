@@ -59,7 +59,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/piwigo/config:/config
       - /path/to/appdata/gallery:/gallery
     ports:
       - 80:80
@@ -75,7 +75,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 80:80 \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/piwigo/config:/config \
   -v /path/to/appdata/gallery:/gallery \
   --restart unless-stopped \
   lscr.io/linuxserver/piwigo:latest
@@ -103,7 +103,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Configuration files. |
+| `/config` | Persistent config files |
 | `/gallery` | Image storage for Piwigo |
 
 #### Miscellaneous Options
@@ -274,6 +274,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **12.12.23:** - Rebase to Alpine 3.18.
 * **03.06.23:** - Revert to Alpine 3.17 due to compatibility issues with php 8.2.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
