@@ -89,7 +89,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - </path/to/appdata/config>:/config
+      - /path/to/thelounge/config:/config
     ports:
       - 9000:9000
     restart: unless-stopped
@@ -104,7 +104,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 9000:9000 \
-  -v </path/to/appdata/config>:/config \
+  -v /path/to/thelounge/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/thelounge:latest
 ```
@@ -131,7 +131,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -301,6 +301,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **18.12.22:** - Rebasing master to alpine 3.17.
 * **24.10.22:** - Fix sqlite3 build.
