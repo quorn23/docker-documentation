@@ -68,7 +68,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/pyload-ng/config:/config
       - /path/to/downloads:/downloads
     ports:
       - 8000:8000
@@ -86,7 +86,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -p 8000:8000 \
   -p 9666:9666 `#optional` \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/pyload-ng/config:/config \
   -v /path/to/downloads:/downloads \
   --restart unless-stopped \
   lscr.io/linuxserver/pyload-ng:latest
@@ -115,7 +115,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | pyLoad Configuration and files database |
+| `/config` | Persistent config files |
 | `/downloads` | Destination of pyLoad downloads |
 
 #### Miscellaneous Options
@@ -286,6 +286,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **08.10.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **10.08.23:** - Bump unrar to 6.2.10.
 * **01.06.23:** - Replace p7zip with 7zip, add unrar.
