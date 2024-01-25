@@ -55,7 +55,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/dokuwiki/config:/config
     ports:
       - 80:80
       - 443:443 #optional
@@ -72,7 +72,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -p 80:80 \
   -p 443:443 `#optional` \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/dokuwiki/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/dokuwiki:latest
 ```
@@ -100,7 +100,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -270,6 +270,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.01.24:** - Rebase to Alpine 3.19 with php 8.3.
 * **25.12.23:** - Existing users should update: site-confs/default.conf - Cleanup default site conf.
 * **21.07.23:** - Update built-in plugins on container update.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
