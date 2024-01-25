@@ -74,7 +74,7 @@ services:
       - DB_PORT=DB_PORT #optional
       - IPINFO_APIKEY=ACCESS_TOKEN #optional
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/librespeed/config:/config
     ports:
       - 80:80
     restart: unless-stopped
@@ -98,7 +98,7 @@ docker run -d \
   -e DB_PORT=DB_PORT `#optional` \
   -e IPINFO_APIKEY=ACCESS_TOKEN `#optional` \
   -p 80:80 \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/librespeed/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/librespeed:latest
 ```
@@ -134,7 +134,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains all relevant configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -304,6 +304,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **06.12.23:** - Replace php mysqli with php pdo_pgsql.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **14.05.23:** - Added support for ipinfo.io
