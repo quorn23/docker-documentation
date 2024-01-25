@@ -65,7 +65,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/data:/config
+      - /path/to/mylar3/config:/config
       - /path/to/comics:/comics
       - /path/to/downloads:/downloads
     ports:
@@ -82,7 +82,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8090:8090 \
-  -v /path/to/data:/config \
+  -v /path/to/mylar3/config:/config \
   -v /path/to/comics:/comics \
   -v /path/to/downloads:/downloads \
   --restart unless-stopped \
@@ -111,7 +111,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Where mylar should store config files. |
+| `/config` | Persistent config files |
 | `/comics` | Map to your comics folder. |
 | `/downloads` | Map to your downloads folder. |
 
@@ -283,6 +283,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **16.08.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **10.08.23:** - Bump unrar to 6.2.10.
 * **11.07.23:** - Rebase to Alpine 3.18
