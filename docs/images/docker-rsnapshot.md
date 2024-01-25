@@ -76,7 +76,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/appdata:/config
+      - /path/to/rsnapshot/config:/config
       - /path/to/snapshots:/.snapshots #optional
       - /path/to/data:/data #optional
     restart: unless-stopped
@@ -90,7 +90,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -v /path/to/appdata:/config \
+  -v /path/to/rsnapshot/config:/config \
   -v /path/to/snapshots:/.snapshots `#optional` \
   -v /path/to/data:/data `#optional` \
   --restart unless-stopped \
@@ -118,7 +118,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains all relevant configuration files. |
+| `/config` | Persistent config files |
 | `/.snapshots` | Storage location for all snapshots. |
 | `/data` | Storage location for data to be backed up. |
 
@@ -290,6 +290,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19, add root periodic crontabs for logrotate.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **02.03.23:** - Split cron into separate init step and set crontab permissions.
 * **15.12.22:** - Rebase to alpine 3.17.
