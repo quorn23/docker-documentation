@@ -18,7 +18,7 @@ title: healthchecks
 
 [Healthchecks](https://github.com/healthchecks/healthchecks) is a watchdog for your cron jobs. It's a web server that listens for pings from your cron jobs, plus a web interface.
 
-[![healthchecks](https://raw.githubusercontent.com/healthchecks/healthchecks/master/static/img/welcome.png)](https://github.com/healthchecks/healthchecks)
+[![healthchecks](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/healthchecks-logo.png")](https://github.com/healthchecks/healthchecks)
 
 ## Supported Architectures
 
@@ -38,6 +38,8 @@ The architectures supported by this image are:
 
 Access the WebUI at <your-ip>:8000. For more information, check out [Healthchecks](https://github.com/healthchecks/healthchecks).
 
+See [here](https://healthchecks.io/docs/self_hosted_configuration/) for a complete list of available environment variables.
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -56,21 +58,21 @@ services:
       - TZ=Etc/UTC
       - SITE_ROOT=
       - SITE_NAME=
-      - DEFAULT_FROM_EMAIL=
-      - EMAIL_HOST=
-      - EMAIL_PORT=
-      - EMAIL_HOST_USER=
-      - EMAIL_HOST_PASSWORD=
-      - EMAIL_USE_TLS=
       - SUPERUSER_EMAIL=
       - SUPERUSER_PASSWORD=
-      - REGENERATE_SETTINGS= #optional
       - ALLOWED_HOSTS= #optional
+      - APPRISE_ENABLED=False #optional
       - CSRF_TRUSTED_ORIGINS= #optional
-      - APPRISE_ENABLED= #optional
-      - DEBUG= #optional
+      - DEBUG=True #optional
+      - DEFAULT_FROM_EMAIL= #optional
+      - EMAIL_HOST= #optional
+      - EMAIL_PORT= #optional
+      - EMAIL_HOST_USER= #optional
+      - EMAIL_HOST_PASSWORD= #optional
+      - EMAIL_USE_TLS= #optional
       - INTEGRATIONS_ALLOW_PRIVATE_IPS= #optional
       - PING_EMAIL_DOMAIN= #optional
+      - RP_ID= #optional
       - SECRET_KEY= #optional
       - SITE_LOGO_URL= #optional
     volumes:
@@ -91,21 +93,21 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e SITE_ROOT= \
   -e SITE_NAME= \
-  -e DEFAULT_FROM_EMAIL= \
-  -e EMAIL_HOST= \
-  -e EMAIL_PORT= \
-  -e EMAIL_HOST_USER= \
-  -e EMAIL_HOST_PASSWORD= \
-  -e EMAIL_USE_TLS= \
   -e SUPERUSER_EMAIL= \
   -e SUPERUSER_PASSWORD= \
-  -e REGENERATE_SETTINGS= `#optional` \
   -e ALLOWED_HOSTS= `#optional` \
+  -e APPRISE_ENABLED=False `#optional` \
   -e CSRF_TRUSTED_ORIGINS= `#optional` \
-  -e APPRISE_ENABLED= `#optional` \
-  -e DEBUG= `#optional` \
+  -e DEBUG=True `#optional` \
+  -e DEFAULT_FROM_EMAIL= `#optional` \
+  -e EMAIL_HOST= `#optional` \
+  -e EMAIL_PORT= `#optional` \
+  -e EMAIL_HOST_USER= `#optional` \
+  -e EMAIL_HOST_PASSWORD= `#optional` \
+  -e EMAIL_USE_TLS= `#optional` \
   -e INTEGRATIONS_ALLOW_PRIVATE_IPS= `#optional` \
   -e PING_EMAIL_DOMAIN= `#optional` \
+  -e RP_ID= `#optional` \
   -e SECRET_KEY= `#optional` \
   -e SITE_LOGO_URL= `#optional` \
   -p 8000:8000 \
@@ -133,31 +135,31 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `PUID=1000` | for UserID - see below for explanation |
 | `PGID=1000` | for GroupID - see below for explanation |
 | `TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `SITE_ROOT=` | The site's top-level URL and the port it listens to if differrent than 80 or 443 (e.g., https://healthchecks.example.com:8000) |
-| `SITE_NAME=` | The site's name (e.g., "Example Corp HealthChecks") |
-| `DEFAULT_FROM_EMAIL=` | From email for alerts |
-| `EMAIL_HOST=` | SMTP host |
-| `EMAIL_PORT=` | SMTP port |
-| `EMAIL_HOST_USER=` | SMTP user |
-| `EMAIL_HOST_PASSWORD=` | SMTP password |
-| `EMAIL_USE_TLS=` | Use TLS for SMTP (`True` or `False`) |
-| `SUPERUSER_EMAIL=` | Superuser email |
-| `SUPERUSER_PASSWORD=` | Superuser password |
-| `REGENERATE_SETTINGS=` | Defaults to False. Set to True to always override the `local_settings.py` file with values from environment variables. Do not set to True if you have made manual modifications to this file. |
-| `ALLOWED_HOSTS=` | A [list](https://docs.python.org/3/tutorial/introduction.html#lists) of valid hostnames for the server. Default is: `["*"]` |
+| `SITE_ROOT=` | The site's top-level URL and the port it listens to if different than 80 or 443 (e.g., https://healthchecks.example.com:8000). |
+| `SITE_NAME=` | The site's name (e.g., "Example Corp HealthChecks"). |
+| `SUPERUSER_EMAIL=` | Superuser email. |
+| `SUPERUSER_PASSWORD=` | Superuser password. |
+| `ALLOWED_HOSTS=` | A comma-separated list of valid hostnames for the server. Default is: `*`. |
+| `APPRISE_ENABLED=False` | Set to `True` to enable the Apprise integration (https://github.com/caronc/apprise). |
 | `CSRF_TRUSTED_ORIGINS=` | A [list](https://docs.python.org/3/tutorial/introduction.html#lists) of trusted origins for unsafe requests (e.g. POST). Defaults to the value of `SITE_ROOT`. |
-| `APPRISE_ENABLED=` | Defaults to False. A boolean that turns on/off the Apprise integration (https://github.com/caronc/apprise) |
-| `DEBUG=` | Defaults to True. Debug mode relaxes CSRF protections and increases logging verbosity but should be disabled for production instances as it will impact performance and security. |
+| `DEBUG=True` | Set to `False` to disable. Debug mode relaxes CSRF protections and increases logging verbosity but should be disabled for production instances as it will impact performance and security. |
+| `DEFAULT_FROM_EMAIL=` | From email for alerts. |
+| `EMAIL_HOST=` | SMTP host. |
+| `EMAIL_PORT=` | SMTP port. |
+| `EMAIL_HOST_USER=` | SMTP user. |
+| `EMAIL_HOST_PASSWORD=` | SMTP password. |
+| `EMAIL_USE_TLS=` | Use TLS for SMTP (`True` or `False`). |
 | `INTEGRATIONS_ALLOW_PRIVATE_IPS=` | Defaults to False. Set to True to allow integrations to connect to private IP addresses. |
-| `PING_EMAIL_DOMAIN=` | The domain to use for generating ping email addresses. |
-| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a secure value if one is not supplied |
-| `SITE_LOGO_URL=` | Full URL to custom site logo |
+| `PING_EMAIL_DOMAIN=` | The domain to use for generating ping email addresses. Defaults to `localhost`. |
+| `RP_ID=` | If using webauthn for 2FA set this to match your Healthchecks domain. Webauthn will only work over https. |
+| `SECRET_KEY=` | A secret key used for cryptographic signing. Will generate a random value if one is not supplied and save it to `/config/local_settings.py`. |
+| `SITE_LOGO_URL=` | Full URL to custom site logo. |
 
 ### Volume Mappings (`-v`)
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Persistent config files |
+| `/config` | Persistent config files. |
 
 #### Miscellaneous Options
 
@@ -327,6 +329,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **24.01.24:** - No longer write envs to local_settings.py. Envs will take precedence over any existing values in config file. Removed `REGENERATE_SETTINGS` as it is now obsolete.
 * **22.01.24:** - Fix CSRF handling.
 * **23.12.23:** - Rebase to Alpine 3.19.
 * **31.05.23:** - Rebase to Alpine 3.18. Deprecate armhf.
