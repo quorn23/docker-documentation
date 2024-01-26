@@ -61,7 +61,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/data:/config
+      - /path/to/ddclient/config:/config
     restart: unless-stopped
 ```
 
@@ -73,7 +73,7 @@ docker run -d \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
-  -v /path/to/data:/config \
+  -v /path/to/ddclient/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/ddclient:latest
 ```
@@ -99,7 +99,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Where ddclient should store its config files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -269,6 +269,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **25.08.23:** - Rebase to Alpine 3.18.
 * **04.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
