@@ -82,7 +82,7 @@ services:
       - LOG_LEVEL=:info #optional
       - JAVA_OPTS= #optional
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/doplarr/config:/config
     restart: unless-stopped
 ```
 
@@ -112,7 +112,7 @@ docker run -d \
   -e PARTIAL_SEASONS=true `#optional` \
   -e LOG_LEVEL=:info `#optional` \
   -e JAVA_OPTS= `#optional` \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/doplarr/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/doplarr:latest
 ```
@@ -156,7 +156,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains all relevant configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -326,6 +326,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **25.05.23:** - Rebase to Alpine 3.18.
 * **18.12.22:** - Rebase to alpine 3.17, upgrade to openjdk17.
 * **01.05.22:** - Remove `DISCORD__ROLE_ID` environment variable, see [Permissions Configuration](https://github.com/kiranshila/Doplarr/blob/main/docs/configuration.md#permissions).
