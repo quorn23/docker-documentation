@@ -85,7 +85,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - path/to/config:/config
+      - /path/to/limnoria/config:/config
     ports:
       - 8080:8080
     restart: unless-stopped
@@ -100,7 +100,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8080:8080 \
-  -v path/to/config:/config \
+  -v /path/to/limnoria/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/limnoria:latest
 ```
@@ -127,7 +127,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Where Limnoria config is stored. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -297,6 +297,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **22.12.22:** - Rebase to alpine 3.17.
 * **19.09.22:** - Rebase to alpine 3.15.
