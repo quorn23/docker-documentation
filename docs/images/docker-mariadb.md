@@ -121,7 +121,7 @@ services:
       - MYSQL_PASSWORD=DATABASE_PASSWORD #optional
       - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
     volumes:
-      - path_to_data:/config
+      - /path/to/mariadb/config:/config
     ports:
       - 3306:3306
     restart: unless-stopped
@@ -141,7 +141,7 @@ docker run -d \
   -e MYSQL_PASSWORD=DATABASE_PASSWORD `#optional` \
   -e REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql `#optional` \
   -p 3306:3306 \
-  -v path_to_data:/config \
+  -v /path/to/mariadb/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/mariadb:latest
 ```
@@ -173,7 +173,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains the db itself and all assorted settings. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -343,6 +343,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19.
 * **09.06.23:** - Update lc_messages path in shipped custom.cnf to match upstream.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **04.02.23:** - Minor updates to defaults in custom.cnf.
