@@ -57,7 +57,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/appdata/config:/config
+      - /path/to/grav/config:/config
     ports:
       - 80:80
     restart: unless-stopped
@@ -72,7 +72,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 80:80 \
-  -v /path/to/appdata/config:/config \
+  -v /path/to/grav/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/grav:latest
 ```
@@ -99,7 +99,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | Contains all relevant configuration files. |
+| `/config` | Persistent config files |
 
 #### Miscellaneous Options
 
@@ -269,6 +269,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.12.23:** - Rebase to Alpine 3.19 with php 8.3.
 * **25.05.23:** - Rebase to Alpine 3.18, deprecate armhf.
 * **06.05.23:** - Add php-ldap for LDAP support.
 * **13.04.23:** - Move ssl.conf include to default.conf.
