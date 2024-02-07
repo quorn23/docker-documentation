@@ -319,5 +319,6 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **06.01.24:** - Rebase to Debian Bookworm.
 * **17.01.24:** - Update wrapper scripts to cleanup and launch properly.
 * **02.04.23:** - Initial release.
