@@ -55,7 +55,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/data:/config
+      - /path/to/sickchill/config:/config
       - /path/to/data:/downloads
       - /path/to/data:/tv
     ports:
@@ -72,7 +72,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 8081:8081 \
-  -v /path/to/data:/config \
+  -v /path/to/sickchill/config:/config \
   -v /path/to/data:/downloads \
   -v /path/to/data:/tv \
   --restart unless-stopped \
@@ -101,7 +101,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Volume | Function |
 | :----: | --- |
-| `/config` | this will store config on the docker host |
+| `/config` | Persistent config files |
 | `/downloads` | this will store any downloaded data on the docker host |
 | `/tv` | this will allow sickchill to view what you already have |
 
@@ -273,6 +273,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **13.02.24:** - Rebase to Alpine 3.19.
 * **07.10.23:** - Install unrar from [linuxserver repo](https://github.com/linuxserver/docker-unrar).
 * **10.08.23:** - Bump unrar to 6.2.10.
 * **12.07.23:** - Rebase to alpine 3.18.
