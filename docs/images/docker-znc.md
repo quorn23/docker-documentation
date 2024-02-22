@@ -36,7 +36,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-To log in to the application, browse to http://<hostip>:6501.
+To log in to the application, browse to `http://<hostip>:6501`.
 
 * Default User: admin
 * Default Password: admin
